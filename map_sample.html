@@ -1,0 +1,41 @@
+<div id="map" data-scroll data-scroll-repeat data-aos="fade-up" data-aos-duration="500" data-aos-easing="ease-in-out">
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9a96e03b36153501a0aed029ed7093d1"></script>
+    <script>
+      var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+        mapOption = {
+          center: new kakao.maps.LatLng(37.5546716286321, 126.97059786645119), // 지도의 중심좌표
+          level: 4 // 지도의 확대 레벨
+        };
+      var map = new kakao.maps.Map(mapContainer, mapOption);
+      var imageSrc = 'images/sub/i_map_marker.svg', // 마커이미지의 주소입니다    
+        imageSize = new kakao.maps.Size(43, 59), // 마커이미지의 크기입니다
+        imageOption = {
+          offset: new kakao.maps.Point(20, 50)
+        }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+      // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+      var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+        markerPosition = new kakao.maps.LatLng(37.5546716286321, 126.97059786645119); // 마커가 표시될 위치입니다
+      var marker = new kakao.maps.Marker({
+        position: markerPosition,
+        image: markerImage // 마커이미지 설정 
+      });
+      // 마커가 지도 위에 표시되도록 설정합니다
+      marker.setMap(map);
+
+      // 커스텀 오버레이에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+      var content = '<a href="https://map.kakao.com/?itemId=9113903" target="_blank" class="map_link">' +
+        '  </a>';
+
+      // 커스텀 오버레이가 표시될 위치입니다 
+      var position = new kakao.maps.LatLng(37.5546716286321, 126.97059786645119);
+
+      // 커스텀 오버레이를 생성합니다
+      var customOverlay = new kakao.maps.CustomOverlay({
+        map: map,
+        position: position,
+        content: content,
+        yAnchor: 1
+      });
+    </script>
+  </div>
